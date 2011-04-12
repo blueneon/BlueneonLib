@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		20191D81135517CC00591A1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20191D3A135517CC00591A1D /* BLLPagingImageView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = BLLPagingImageView;
+		};
+		20191D84135517CC00591A1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20191D4D135517CC00591A1D /* CocoaTableView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D1107320486CEB800E47090;
+			remoteInfo = CocoaTableView;
+		};
+		20191D87135517CC00591A1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20191D5C135517CC00591A1D /* Feed.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = Feed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20191CC8135517CC00591A1D /* BlueneonLibFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueneonLibFoundation.h; sourceTree = "<group>"; };
+		20191CCA135517CC00591A1D /* BLLCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLCache.h; sourceTree = "<group>"; };
+		20191CCB135517CC00591A1D /* BLLCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLCache.m; sourceTree = "<group>"; };
+		20191CCD135517CC00591A1D /* BLLCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLCoreData.h; sourceTree = "<group>"; };
+		20191CCE135517CC00591A1D /* BLLCoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLCoreDataManager.h; sourceTree = "<group>"; };
+		20191CCF135517CC00591A1D /* BLLCoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLCoreDataManager.m; sourceTree = "<group>"; };
+		20191CD0135517CC00591A1D /* BLLManagedObjectContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLManagedObjectContext.h; sourceTree = "<group>"; };
+		20191CD1135517CC00591A1D /* BLLManagedObjectContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLManagedObjectContext.m; sourceTree = "<group>"; };
+		20191CD2135517CC00591A1D /* BLLRemoteManagedObjectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLRemoteManagedObjectProtocol.h; sourceTree = "<group>"; };
+		20191CD4135517CC00591A1D /* BLLArrayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLArrayController.h; sourceTree = "<group>"; };
+		20191CD5135517CC00591A1D /* BLLArrayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLArrayController.m; sourceTree = "<group>"; };
+		20191CE2135517CC00591A1D /* NSFetchRequest+BLLNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+BLLNetwork.h"; sourceTree = "<group>"; };
+		20191CE3135517CC00591A1D /* NSFetchRequest+BLLNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+BLLNetwork.m"; sourceTree = "<group>"; };
+		20191CE5135517CC00591A1D /* BLLErrorHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLErrorHandler.h; sourceTree = "<group>"; };
+		20191CE6135517CC00591A1D /* BLLErrorHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLErrorHandler.m; sourceTree = "<group>"; };
+		20191CE8135517CC00591A1D /* BLLLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLLogging.h; sourceTree = "<group>"; };
+		20191CEA135517CC00591A1D /* BLLNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLNetwork.h; sourceTree = "<group>"; };
+		20191CEB135517CC00591A1D /* BLLNetworkOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLNetworkOperation.h; sourceTree = "<group>"; };
+		20191CEC135517CC00591A1D /* BLLNetworkOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLNetworkOperation.m; sourceTree = "<group>"; };
+		20191CEE135517CC00591A1D /* BLLDataProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLDataProcessor.h; sourceTree = "<group>"; };
+		20191CEF135517CC00591A1D /* BLLDataProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLDataProcessor.m; sourceTree = "<group>"; };
+		20191CF0135517CC00591A1D /* BLLDataProcessorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLDataProcessorProtocol.h; sourceTree = "<group>"; };
+		20191CF1135517CC00591A1D /* BLLDataProcessors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLDataProcessors.h; sourceTree = "<group>"; };
+		20191CF2135517CC00591A1D /* BLLFileDataProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLFileDataProcessor.h; sourceTree = "<group>"; };
+		20191CF3135517CC00591A1D /* BLLFileDataProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLFileDataProcessor.m; sourceTree = "<group>"; };
+		20191CF5135517CC00591A1D /* BLLDefaultErrorHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLDefaultErrorHandler.h; sourceTree = "<group>"; };
+		20191CF6135517CC00591A1D /* BLLDefaultErrorHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLDefaultErrorHandler.m; sourceTree = "<group>"; };
+		20191CF7135517CC00591A1D /* BLLErrorHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLErrorHandlerProtocol.h; sourceTree = "<group>"; };
+		20191CF8135517CC00591A1D /* NSOperationQueue+NetworkOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+NetworkOperationQueue.h"; sourceTree = "<group>"; };
+		20191CF9135517CC00591A1D /* NSOperationQueue+NetworkOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+NetworkOperationQueue.m"; sourceTree = "<group>"; };
+		20191CFB135517CC00591A1D /* BLLSOAP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLSOAP.h; sourceTree = "<group>"; };
+		20191CFC135517CC00591A1D /* BLLSOAPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLSOAPRequest.h; sourceTree = "<group>"; };
+		20191CFD135517CC00591A1D /* BLLSOAPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLSOAPRequest.m; sourceTree = "<group>"; };
+		20191CFE135517CC00591A1D /* BLLSOAPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLSOAPService.h; sourceTree = "<group>"; };
+		20191CFF135517CC00591A1D /* BLLSOAPService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLSOAPService.m; sourceTree = "<group>"; };
+		20191D01135517CC00591A1D /* BLLPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLPair.h; sourceTree = "<group>"; };
+		20191D02135517CC00591A1D /* BLLPair.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLPair.m; sourceTree = "<group>"; };
+		20191D03135517CC00591A1D /* NSString+md5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+md5.h"; sourceTree = "<group>"; };
+		20191D04135517CC00591A1D /* NSString+md5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+md5.m"; sourceTree = "<group>"; };
+		20191D06135517CC00591A1D /* BLLValueTransformers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLValueTransformers.h; sourceTree = "<group>"; };
+		20191D07135517CC00591A1D /* NSDictionaryToNSDataTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDictionaryToNSDataTransformer.h; sourceTree = "<group>"; };
+		20191D08135517CC00591A1D /* NSDictionaryToNSDataTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryToNSDataTransformer.m; sourceTree = "<group>"; };
+		20191D09135517CC00591A1D /* NSURLToNSDataTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSURLToNSDataTransformer.h; sourceTree = "<group>"; };
+		20191D0A135517CC00591A1D /* NSURLToNSDataTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURLToNSDataTransformer.m; sourceTree = "<group>"; };
+		20191D0D135517CC00591A1D /* BLLPagingImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLPagingImageView.h; sourceTree = "<group>"; };
+		20191D0E135517CC00591A1D /* BLLPagingImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLPagingImageView.m; sourceTree = "<group>"; };
+		20191D0F135517CC00591A1D /* BLLZoomingImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLZoomingImageView.h; sourceTree = "<group>"; };
+		20191D10135517CC00591A1D /* BLLZoomingImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLZoomingImageView.m; sourceTree = "<group>"; };
+		20191D12135517CC00591A1D /* BLLTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLTabBarController.h; sourceTree = "<group>"; };
+		20191D13135517CC00591A1D /* BLLTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLTabBarController.m; sourceTree = "<group>"; };
+		20191D14135517CC00591A1D /* BlueneonLibiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueneonLibiOS.h; sourceTree = "<group>"; };
+		20191D16135517CC00591A1D /* BLLColumnTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLColumnTextView.h; sourceTree = "<group>"; };
+		20191D17135517CC00591A1D /* BLLColumnTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLColumnTextView.m; sourceTree = "<group>"; };
+		20191D18135517CC00591A1D /* BLLPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLPageControl.h; sourceTree = "<group>"; };
+		20191D19135517CC00591A1D /* BLLPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLPageControl.m; sourceTree = "<group>"; };
+		20191D1A135517CC00591A1D /* BLLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLView.h; sourceTree = "<group>"; };
+		20191D1B135517CC00591A1D /* BLLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLView.m; sourceTree = "<group>"; };
+		20191D1D135517CC00591A1D /* BLLBoxLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLBoxLayout.h; sourceTree = "<group>"; };
+		20191D1E135517CC00591A1D /* BLLBoxLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLBoxLayout.m; sourceTree = "<group>"; };
+		20191D1F135517CC00591A1D /* BLLLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLLayout.h; sourceTree = "<group>"; };
+		20191D20135517CC00591A1D /* BLLLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLLayoutManager.h; sourceTree = "<group>"; };
+		20191D21135517CC00591A1D /* BLLLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLLayoutManager.m; sourceTree = "<group>"; };
+		20191D23135517CC00591A1D /* BLLStyleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLStyleManager.h; sourceTree = "<group>"; };
+		20191D24135517CC00591A1D /* BLLStyleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLStyleManager.m; sourceTree = "<group>"; };
+		20191D25135517CC00591A1D /* UIColor+String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
+		20191D26135517CC00591A1D /* UIColor+String.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
+		20191D28135517CC00591A1D /* BLLGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLGeometry.h; sourceTree = "<group>"; };
+		20191D29135517CC00591A1D /* BLLGeometry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLGeometry.m; sourceTree = "<group>"; };
+		20191D2A135517CC00591A1D /* UIImage+BLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+BLL.h"; sourceTree = "<group>"; };
+		20191D2B135517CC00591A1D /* UIImage+BLL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BLL.m"; sourceTree = "<group>"; };
+		20191D2E135517CC00591A1D /* BLLClipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLClipView.h; sourceTree = "<group>"; };
+		20191D2F135517CC00591A1D /* BLLClipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLClipView.m; sourceTree = "<group>"; };
+		20191D30135517CC00591A1D /* BLLFlippedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLFlippedView.h; sourceTree = "<group>"; };
+		20191D31135517CC00591A1D /* BLLFlippedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLFlippedView.m; sourceTree = "<group>"; };
+		20191D32135517CC00591A1D /* BLLTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLTableView.h; sourceTree = "<group>"; };
+		20191D33135517CC00591A1D /* BLLTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLTableView.m; sourceTree = "<group>"; };
+		20191D34135517CC00591A1D /* BLLTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLTableViewCell.h; sourceTree = "<group>"; };
+		20191D35135517CC00591A1D /* BLLTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLTableViewCell.m; sourceTree = "<group>"; };
+		20191D36135517CC00591A1D /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		20191D39135517CC00591A1D /* BLLPagingImageView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLLPagingImageView-Info.plist"; sourceTree = "<group>"; };
+		20191D3A135517CC00591A1D /* BLLPagingImageView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = BLLPagingImageView.xcodeproj; sourceTree = "<group>"; };
+		20191D3D135517CC00591A1D /* BLLPagingImageView_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLPagingImageView_Prefix.pch; sourceTree = "<group>"; };
+		20191D3E135517CC00591A1D /* BLLPagingImageViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLLPagingImageViewViewController.xib; sourceTree = "<group>"; };
+		20191D3F135517CC00591A1D /* blue-lego.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-lego.png"; sourceTree = "<group>"; };
+		20191D41135517CC00591A1D /* BLLPagingImageViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLPagingImageViewAppDelegate.h; sourceTree = "<group>"; };
+		20191D42135517CC00591A1D /* BLLPagingImageViewAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLPagingImageViewAppDelegate.m; sourceTree = "<group>"; };
+		20191D43135517CC00591A1D /* BLLPagingImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLLPagingImageViewViewController.h; sourceTree = "<group>"; };
+		20191D44135517CC00591A1D /* BLLPagingImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLLPagingImageViewViewController.m; sourceTree = "<group>"; };
+		20191D45135517CC00591A1D /* lymph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lymph.png; sourceTree = "<group>"; };
+		20191D46135517CC00591A1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20191D47135517CC00591A1D /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		20191D48135517CC00591A1D /* oak_2560x1600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oak_2560x1600.jpg; sourceTree = "<group>"; };
+		20191D49135517CC00591A1D /* solar_system.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = solar_system.jpg; sourceTree = "<group>"; };
+		20191D4A135517CC00591A1D /* solutions2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solutions2.png; sourceTree = "<group>"; };
+		20191D4C135517CC00591A1D /* CocoaTableView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaTableView-Info.plist"; sourceTree = "<group>"; };
+		20191D4D135517CC00591A1D /* CocoaTableView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CocoaTableView.xcodeproj; sourceTree = "<group>"; };
+		20191D50135517CC00591A1D /* CocoaTableView_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaTableView_Prefix.pch; sourceTree = "<group>"; };
+		20191D51135517CC00591A1D /* CocoaTableViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaTableViewAppDelegate.h; sourceTree = "<group>"; };
+		20191D52135517CC00591A1D /* CocoaTableViewAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaTableViewAppDelegate.m; sourceTree = "<group>"; };
+		20191D54135517CC00591A1D /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		20191D56135517CC00591A1D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		20191D57135517CC00591A1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20191D58135517CC00591A1D /* TestCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionView.h; sourceTree = "<group>"; };
+		20191D59135517CC00591A1D /* TestCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionView.m; sourceTree = "<group>"; };
+		20191D5B135517CC00591A1D /* Feed-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Feed-Info.plist"; sourceTree = "<group>"; };
+		20191D5C135517CC00591A1D /* Feed.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Feed.xcodeproj; sourceTree = "<group>"; };
+		20191D5F135517CC00591A1D /* Feed_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Feed_Prefix.pch; sourceTree = "<group>"; };
+		20191D61135517CC00591A1D /* AppDelegate_Pad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Pad.h; sourceTree = "<group>"; };
+		20191D62135517CC00591A1D /* AppDelegate_Pad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Pad.m; sourceTree = "<group>"; };
+		20191D63135517CC00591A1D /* MainWindow_Pad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_Pad.xib; sourceTree = "<group>"; };
+		20191D65135517CC00591A1D /* AppDelegate_Phone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Phone.h; sourceTree = "<group>"; };
+		20191D66135517CC00591A1D /* AppDelegate_Phone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Phone.m; sourceTree = "<group>"; };
+		20191D67135517CC00591A1D /* MainWindow_Phone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow_Phone.xib; sourceTree = "<group>"; };
+		20191D69135517CC00591A1D /* AppDelegate_Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate_Shared.h; sourceTree = "<group>"; };
+		20191D6A135517CC00591A1D /* AppDelegate_Shared.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_Shared.m; sourceTree = "<group>"; };
+		20191D6C135517CC00591A1D /* Feed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Feed.xcdatamodel; sourceTree = "<group>"; };
+		20191D6D135517CC00591A1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20191D6F135517CC00591A1D /* TestDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDownloadManager.h; sourceTree = "<group>"; };
+		20191D70135517CC00591A1D /* TestDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestDownloadManager.m; sourceTree = "<group>"; };
+		20191D71135517CC00591A1D /* TestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		20191D72135517CC00591A1D /* TestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
+		20191D73135517CC00591A1D /* UnitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		20191CC6135517CC00591A1D /* BlueneonLib */ = {
+			isa = PBXGroup;
+			children = (
+				20191CC7135517CC00591A1D /* Foundation */,
+				20191D0B135517CC00591A1D /* iOS */,
+				20191D2C135517CC00591A1D /* OSX */,
+			);
+			path = BlueneonLib;
+			sourceTree = "<group>";
+		};
+		20191CC7135517CC00591A1D /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				20191CC8135517CC00591A1D /* BlueneonLibFoundation.h */,
+				20191CC9135517CC00591A1D /* Cache */,
+				20191CCC135517CC00591A1D /* CoreData */,
+				20191CE4135517CC00591A1D /* ErrorHandler */,
+				20191CE7135517CC00591A1D /* Logging */,
+				20191CE9135517CC00591A1D /* Network */,
+				20191CFA135517CC00591A1D /* SOAP */,
+				20191D00135517CC00591A1D /* Util */,
+				20191D05135517CC00591A1D /* ValueTransformers */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		20191CC9135517CC00591A1D /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				20191CCA135517CC00591A1D /* BLLCache.h */,
+				20191CCB135517CC00591A1D /* BLLCache.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		20191CCC135517CC00591A1D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				20191CCD135517CC00591A1D /* BLLCoreData.h */,
+				20191CCE135517CC00591A1D /* BLLCoreDataManager.h */,
+				20191CCF135517CC00591A1D /* BLLCoreDataManager.m */,
+				20191CD0135517CC00591A1D /* BLLManagedObjectContext.h */,
+				20191CD1135517CC00591A1D /* BLLManagedObjectContext.m */,
+				20191CD2135517CC00591A1D /* BLLRemoteManagedObjectProtocol.h */,
+				20191CD3135517CC00591A1D /* CollectionControllers */,
+				20191CE2135517CC00591A1D /* NSFetchRequest+BLLNetwork.h */,
+				20191CE3135517CC00591A1D /* NSFetchRequest+BLLNetwork.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		20191CD3135517CC00591A1D /* CollectionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				20191CD4135517CC00591A1D /* BLLArrayController.h */,
+				20191CD5135517CC00591A1D /* BLLArrayController.m */,
+			);
+			path = CollectionControllers;
+			sourceTree = "<group>";
+		};
+		20191CE4135517CC00591A1D /* ErrorHandler */ = {
+			isa = PBXGroup;
+			children = (
+				20191CE5135517CC00591A1D /* BLLErrorHandler.h */,
+				20191CE6135517CC00591A1D /* BLLErrorHandler.m */,
+			);
+			path = ErrorHandler;
+			sourceTree = "<group>";
+		};
+		20191CE7135517CC00591A1D /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				20191CE8135517CC00591A1D /* BLLLogging.h */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		20191CE9135517CC00591A1D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				20191CEA135517CC00591A1D /* BLLNetwork.h */,
+				20191CEB135517CC00591A1D /* BLLNetworkOperation.h */,
+				20191CEC135517CC00591A1D /* BLLNetworkOperation.m */,
+				20191CED135517CC00591A1D /* DataProcessors */,
+				20191CF4135517CC00591A1D /* ErrorHandler */,
+				20191CF8135517CC00591A1D /* NSOperationQueue+NetworkOperationQueue.h */,
+				20191CF9135517CC00591A1D /* NSOperationQueue+NetworkOperationQueue.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		20191CED135517CC00591A1D /* DataProcessors */ = {
+			isa = PBXGroup;
+			children = (
+				20191CEE135517CC00591A1D /* BLLDataProcessor.h */,
+				20191CEF135517CC00591A1D /* BLLDataProcessor.m */,
+				20191CF0135517CC00591A1D /* BLLDataProcessorProtocol.h */,
+				20191CF1135517CC00591A1D /* BLLDataProcessors.h */,
+				20191CF2135517CC00591A1D /* BLLFileDataProcessor.h */,
+				20191CF3135517CC00591A1D /* BLLFileDataProcessor.m */,
+			);
+			path = DataProcessors;
+			sourceTree = "<group>";
+		};
+		20191CF4135517CC00591A1D /* ErrorHandler */ = {
+			isa = PBXGroup;
+			children = (
+				20191CF5135517CC00591A1D /* BLLDefaultErrorHandler.h */,
+				20191CF6135517CC00591A1D /* BLLDefaultErrorHandler.m */,
+				20191CF7135517CC00591A1D /* BLLErrorHandlerProtocol.h */,
+			);
+			path = ErrorHandler;
+			sourceTree = "<group>";
+		};
+		20191CFA135517CC00591A1D /* SOAP */ = {
+			isa = PBXGroup;
+			children = (
+				20191CFB135517CC00591A1D /* BLLSOAP.h */,
+				20191CFC135517CC00591A1D /* BLLSOAPRequest.h */,
+				20191CFD135517CC00591A1D /* BLLSOAPRequest.m */,
+				20191CFE135517CC00591A1D /* BLLSOAPService.h */,
+				20191CFF135517CC00591A1D /* BLLSOAPService.m */,
+			);
+			path = SOAP;
+			sourceTree = "<group>";
+		};
+		20191D00135517CC00591A1D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				20191D01135517CC00591A1D /* BLLPair.h */,
+				20191D02135517CC00591A1D /* BLLPair.m */,
+				20191D03135517CC00591A1D /* NSString+md5.h */,
+				20191D04135517CC00591A1D /* NSString+md5.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		20191D05135517CC00591A1D /* ValueTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				20191D06135517CC00591A1D /* BLLValueTransformers.h */,
+				20191D07135517CC00591A1D /* NSDictionaryToNSDataTransformer.h */,
+				20191D08135517CC00591A1D /* NSDictionaryToNSDataTransformer.m */,
+				20191D09135517CC00591A1D /* NSURLToNSDataTransformer.h */,
+				20191D0A135517CC00591A1D /* NSURLToNSDataTransformer.m */,
+			);
+			path = ValueTransformers;
+			sourceTree = "<group>";
+		};
+		20191D0B135517CC00591A1D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				20191D0C135517CC00591A1D /* BLLPagingImageView */,
+				20191D11135517CC00591A1D /* BLLTabController */,
+				20191D14135517CC00591A1D /* BlueneonLibiOS.h */,
+				20191D15135517CC00591A1D /* CustomViews */,
+				20191D1C135517CC00591A1D /* LayoutManager */,
+				20191D22135517CC00591A1D /* StyleManager */,
+				20191D27135517CC00591A1D /* Uitl */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		20191D0C135517CC00591A1D /* BLLPagingImageView */ = {
+			isa = PBXGroup;
+			children = (
+				20191D0D135517CC00591A1D /* BLLPagingImageView.h */,
+				20191D0E135517CC00591A1D /* BLLPagingImageView.m */,
+				20191D0F135517CC00591A1D /* BLLZoomingImageView.h */,
+				20191D10135517CC00591A1D /* BLLZoomingImageView.m */,
+			);
+			path = BLLPagingImageView;
+			sourceTree = "<group>";
+		};
+		20191D11135517CC00591A1D /* BLLTabController */ = {
+			isa = PBXGroup;
+			children = (
+				20191D12135517CC00591A1D /* BLLTabBarController.h */,
+				20191D13135517CC00591A1D /* BLLTabBarController.m */,
+			);
+			path = BLLTabController;
+			sourceTree = "<group>";
+		};
+		20191D15135517CC00591A1D /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				20191D16135517CC00591A1D /* BLLColumnTextView.h */,
+				20191D17135517CC00591A1D /* BLLColumnTextView.m */,
+				20191D18135517CC00591A1D /* BLLPageControl.h */,
+				20191D19135517CC00591A1D /* BLLPageControl.m */,
+				20191D1A135517CC00591A1D /* BLLView.h */,
+				20191D1B135517CC00591A1D /* BLLView.m */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		20191D1C135517CC00591A1D /* LayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				20191D1D135517CC00591A1D /* BLLBoxLayout.h */,
+				20191D1E135517CC00591A1D /* BLLBoxLayout.m */,
+				20191D1F135517CC00591A1D /* BLLLayout.h */,
+				20191D20135517CC00591A1D /* BLLLayoutManager.h */,
+				20191D21135517CC00591A1D /* BLLLayoutManager.m */,
+			);
+			path = LayoutManager;
+			sourceTree = "<group>";
+		};
+		20191D22135517CC00591A1D /* StyleManager */ = {
+			isa = PBXGroup;
+			children = (
+				20191D23135517CC00591A1D /* BLLStyleManager.h */,
+				20191D24135517CC00591A1D /* BLLStyleManager.m */,
+				20191D25135517CC00591A1D /* UIColor+String.h */,
+				20191D26135517CC00591A1D /* UIColor+String.m */,
+			);
+			path = StyleManager;
+			sourceTree = "<group>";
+		};
+		20191D27135517CC00591A1D /* Uitl */ = {
+			isa = PBXGroup;
+			children = (
+				20191D28135517CC00591A1D /* BLLGeometry.h */,
+				20191D29135517CC00591A1D /* BLLGeometry.m */,
+				20191D2A135517CC00591A1D /* UIImage+BLL.h */,
+				20191D2B135517CC00591A1D /* UIImage+BLL.m */,
+			);
+			path = Uitl;
+			sourceTree = "<group>";
+		};
+		20191D2C135517CC00591A1D /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				20191D2D135517CC00591A1D /* CocoaTableView */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
+		20191D2D135517CC00591A1D /* CocoaTableView */ = {
+			isa = PBXGroup;
+			children = (
+				20191D2E135517CC00591A1D /* BLLClipView.h */,
+				20191D2F135517CC00591A1D /* BLLClipView.m */,
+				20191D30135517CC00591A1D /* BLLFlippedView.h */,
+				20191D31135517CC00591A1D /* BLLFlippedView.m */,
+				20191D32135517CC00591A1D /* BLLTableView.h */,
+				20191D33135517CC00591A1D /* BLLTableView.m */,
+				20191D34135517CC00591A1D /* BLLTableViewCell.h */,
+				20191D35135517CC00591A1D /* BLLTableViewCell.m */,
+			);
+			path = CocoaTableView;
+			sourceTree = "<group>";
+		};
+		20191D37135517CC00591A1D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				20191D38135517CC00591A1D /* BLLPagingImageView */,
+				20191D4B135517CC00591A1D /* CocoaTableView */,
+				20191D5A135517CC00591A1D /* Feed */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		20191D38135517CC00591A1D /* BLLPagingImageView */ = {
+			isa = PBXGroup;
+			children = (
+				20191D39135517CC00591A1D /* BLLPagingImageView-Info.plist */,
+				20191D3A135517CC00591A1D /* BLLPagingImageView.xcodeproj */,
+				20191D3D135517CC00591A1D /* BLLPagingImageView_Prefix.pch */,
+				20191D3E135517CC00591A1D /* BLLPagingImageViewViewController.xib */,
+				20191D3F135517CC00591A1D /* blue-lego.png */,
+				20191D40135517CC00591A1D /* Classes */,
+				20191D45135517CC00591A1D /* lymph.png */,
+				20191D46135517CC00591A1D /* main.m */,
+				20191D47135517CC00591A1D /* MainWindow.xib */,
+				20191D48135517CC00591A1D /* oak_2560x1600.jpg */,
+				20191D49135517CC00591A1D /* solar_system.jpg */,
+				20191D4A135517CC00591A1D /* solutions2.png */,
+			);
+			path = BLLPagingImageView;
+			sourceTree = "<group>";
+		};
+		20191D3B135517CC00591A1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20191D82135517CC00591A1D /* BLLPagingImageView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20191D40135517CC00591A1D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				20191D41135517CC00591A1D /* BLLPagingImageViewAppDelegate.h */,
+				20191D42135517CC00591A1D /* BLLPagingImageViewAppDelegate.m */,
+				20191D43135517CC00591A1D /* BLLPagingImageViewViewController.h */,
+				20191D44135517CC00591A1D /* BLLPagingImageViewViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		20191D4B135517CC00591A1D /* CocoaTableView */ = {
+			isa = PBXGroup;
+			children = (
+				20191D4C135517CC00591A1D /* CocoaTableView-Info.plist */,
+				20191D4D135517CC00591A1D /* CocoaTableView.xcodeproj */,
+				20191D50135517CC00591A1D /* CocoaTableView_Prefix.pch */,
+				20191D51135517CC00591A1D /* CocoaTableViewAppDelegate.h */,
+				20191D52135517CC00591A1D /* CocoaTableViewAppDelegate.m */,
+				20191D53135517CC00591A1D /* InfoPlist.strings */,
+				20191D55135517CC00591A1D /* MainMenu.xib */,
+				20191D57135517CC00591A1D /* main.m */,
+				20191D58135517CC00591A1D /* TestCollectionView.h */,
+				20191D59135517CC00591A1D /* TestCollectionView.m */,
+			);
+			path = CocoaTableView;
+			sourceTree = "<group>";
+		};
+		20191D4E135517CC00591A1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20191D85135517CC00591A1D /* CocoaTableView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20191D5A135517CC00591A1D /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				20191D5B135517CC00591A1D /* Feed-Info.plist */,
+				20191D5C135517CC00591A1D /* Feed.xcodeproj */,
+				20191D5F135517CC00591A1D /* Feed_Prefix.pch */,
+				20191D60135517CC00591A1D /* iPad */,
+				20191D64135517CC00591A1D /* iPhone */,
+				20191D68135517CC00591A1D /* Shared */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		20191D5D135517CC00591A1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20191D88135517CC00591A1D /* Feed.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20191D60135517CC00591A1D /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				20191D61135517CC00591A1D /* AppDelegate_Pad.h */,
+				20191D62135517CC00591A1D /* AppDelegate_Pad.m */,
+				20191D63135517CC00591A1D /* MainWindow_Pad.xib */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		20191D64135517CC00591A1D /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				20191D65135517CC00591A1D /* AppDelegate_Phone.h */,
+				20191D66135517CC00591A1D /* AppDelegate_Phone.m */,
+				20191D67135517CC00591A1D /* MainWindow_Phone.xib */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
+		20191D68135517CC00591A1D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				20191D69135517CC00591A1D /* AppDelegate_Shared.h */,
+				20191D6A135517CC00591A1D /* AppDelegate_Shared.m */,
+				20191D6B135517CC00591A1D /* Feed.xcdatamodeld */,
+				20191D6D135517CC00591A1D /* main.m */,
+				20191D6E135517CC00591A1D /* UnitTests */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		20191D6E135517CC00591A1D /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				20191D6F135517CC00591A1D /* TestDownloadManager.h */,
+				20191D70135517CC00591A1D /* TestDownloadManager.m */,
+				20191D71135517CC00591A1D /* TestModel.h */,
+				20191D72135517CC00591A1D /* TestModel.m */,
+				20191D73135517CC00591A1D /* UnitTests.h */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		20A2B603135517A700DE96CE = {
+			isa = PBXGroup;
+			children = (
+				20191CC6135517CC00591A1D /* BlueneonLib */,
+				20191D36135517CC00591A1D /* README */,
+				20191D37135517CC00591A1D /* Tests */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		20A2B605135517A700DE96CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Apple Inc.";
+			};
+			buildConfigurationList = 20A2B608135517A700DE96CE /* Build configuration list for PBXProject "BlueneonLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 20A2B603135517A700DE96CE;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 20191D3B135517CC00591A1D /* Products */;
+					ProjectRef = 20191D3A135517CC00591A1D /* BLLPagingImageView.xcodeproj */;
+				},
+				{
+					ProductGroup = 20191D4E135517CC00591A1D /* Products */;
+					ProjectRef = 20191D4D135517CC00591A1D /* CocoaTableView.xcodeproj */;
+				},
+				{
+					ProductGroup = 20191D5D135517CC00591A1D /* Products */;
+					ProjectRef = 20191D5C135517CC00591A1D /* Feed.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		20191D82135517CC00591A1D /* BLLPagingImageView.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BLLPagingImageView.app;
+			remoteRef = 20191D81135517CC00591A1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20191D85135517CC00591A1D /* CocoaTableView.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CocoaTableView.app;
+			remoteRef = 20191D84135517CC00591A1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20191D88135517CC00591A1D /* Feed.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Feed.app;
+			remoteRef = 20191D87135517CC00591A1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXVariantGroup section */
+		20191D53135517CC00591A1D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20191D54135517CC00591A1D /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		20191D55135517CC00591A1D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20191D56135517CC00591A1D /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20A2B60A135517A700DE96CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		20A2B60B135517A700DE96CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20A2B608135517A700DE96CE /* Build configuration list for PBXProject "BlueneonLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20A2B60A135517A700DE96CE /* Debug */,
+				20A2B60B135517A700DE96CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		20191D6B135517CC00591A1D /* Feed.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				20191D6C135517CC00591A1D /* Feed.xcdatamodel */,
+			);
+			currentVersion = 20191D6C135517CC00591A1D /* Feed.xcdatamodel */;
+			path = Feed.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 20A2B605135517A700DE96CE /* Project object */;
+}

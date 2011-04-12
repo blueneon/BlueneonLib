@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'BLLPagingImageView' target in the 'BLLPagingImageView' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+
+#import "BlueneonLibFoundation.h"
+#import "BlueneonLibiOS.h"
+
+#endif

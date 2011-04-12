@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'Feed' target in the 'Feed' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+
+	#import "BLLLogging.h"
+	#import "BLLValueTransformers.h"
+//	#import "BLLCoreDataManager.h"	
+#endif
