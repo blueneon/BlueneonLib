@@ -34,7 +34,6 @@
 #import "BLLManagedObjectContext.h"
 #import "BLLCoreDataManager.h"
 #import "NSFetchRequest+BLLNetwork.h"
-#import "NSString+SBJSON.h"
 #import "BLLRemoteManagedObjectProtocol.h"
 #import "BLLNetwork.h"
 

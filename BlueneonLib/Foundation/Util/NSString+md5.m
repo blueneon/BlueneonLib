@@ -51,7 +51,7 @@
 {
 	NSData* data = [self dataUsingEncoding:NSUTF8StringEncoding];
 	unsigned char md5Hash[16];
-	CC_MD5([data bytes],[data length],md5Hash);
+	CC_MD5([data bytes],(unsigned int)[data length],md5Hash);
 	
 	NSString *md5HashString = [NSString stringWithFormat: @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",	 
 							   md5Hash[0], md5Hash[1], md5Hash[2], md5Hash[3],	 

@@ -96,11 +96,13 @@ NSString* const kBLLCacheFileURLKey = @"com.blueneon.blueneonLib.cache.fileURLKe
 		self.networkOperationQueue = [[[NSOperationQueue alloc] init] autorelease];
 		[self.networkOperationQueue setSuspended:NO];
 		self.name = aName;
-		
+        
+#if TARGET_OS_EMBEDDED   
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 												 selector:@selector(handleDidRecieveMemoryWarning:) 
 													 name:UIApplicationDidReceiveMemoryWarningNotification 
 												   object:nil];
+#endif
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 												 selector:@selector(handleNetworkOperationDidFinishNotification:) 
@@ -113,10 +115,11 @@ NSString* const kBLLCacheFileURLKey = @"com.blueneon.blueneonLib.cache.fileURLKe
 - (void) dealloc
 {	
 	[self.networkOperationQueue cancelNetworkOperationsWithContext:self.name];
+#if TARGET_OS_EMBEDDED
 	[[NSNotificationCenter defaultCenter] removeObserver:self 
 													name:UIApplicationDidReceiveMemoryWarningNotification 
 												  object:nil];
-	
+#endif
 	[[NSNotificationCenter defaultCenter] removeObserver:self 
 													name:kBLLNetworkOperationDidFinishNotification 
 												  object:nil];
@@ -247,11 +250,13 @@ NSString* const kBLLCacheFileURLKey = @"com.blueneon.blueneonLib.cache.fileURLKe
 
 #pragma mark -
 #pragma mark Interface implementation
+#if TARGET_OS_EMBEDDED
 -(UIImage*) imageWithURL:(NSURL *)aURL
 {
 	UIImage* cachedImage = [self objectWithURL:aURL class:[UIImage class]];;
 	return cachedImage;	
 }
+#endif
 
 -(NSData*) dataWithURL:(NSURL *)aURL
 {

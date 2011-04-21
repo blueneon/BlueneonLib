@@ -50,7 +50,9 @@ extern NSString* const kBLLCacheFileURLKey;
 - (id) initWithName:(NSString*) aName;
 - (id) initWithName:(NSString*) aName path:(NSString*) path;
 
+#if TARGET_OS_EMBEDDED
 -(UIImage*) imageWithURL:(NSURL *)aURL;
+#endif
 -(NSData*) dataWithURL:(NSURL *)aURL;
 
 -(void) evictObjectWithURL:(NSURL *)aURL;

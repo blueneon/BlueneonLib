@@ -31,7 +31,7 @@
 //  or implied, of Alex Carter.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 
 @protocol BLLRemoteManagedObjectProtocol

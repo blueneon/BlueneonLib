@@ -78,7 +78,7 @@
 		
 		if([updatedObjects containsObject:obj])
 		{
-			[updatedArrayObjects addObject:[BLLPair pairWithFirstValue:obj secondValue:[NSNumber numberWithInt:index]]];
+			[updatedArrayObjects addObject:[BLLPair pairWithFirstValue:obj secondValue:[NSNumber numberWithInteger:index]]];
 		}
 		index++;
 	}	
