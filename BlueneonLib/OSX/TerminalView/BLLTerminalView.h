@@ -15,5 +15,6 @@
     BLLTerminalViewController* _internalController;
 }
 @property (retain, nonatomic) NSTask* task;
+@property (assign, readonly) NSMutableArray* commandHistory;
 
 @end
