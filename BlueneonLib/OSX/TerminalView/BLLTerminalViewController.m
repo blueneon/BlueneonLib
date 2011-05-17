@@ -12,24 +12,29 @@
 #import "Debug.h"
 
 @interface BLLTerminalViewController ()
-    @property (assign, readonly) dispatch_queue_t readDispachQueue;
-    @property (assign) NSRange editableRange;
-    @property(retain,nonatomic) NSString* editedText;
+@property (assign, readonly) dispatch_queue_t readDispachQueue;
+@property (assign) NSRange editableRange;
+@property(retain,nonatomic) NSString* editedText;
+@property(retain,nonatomic) NSMutableDictionary* shadowCommandHistory;
 
-    -(void) installStandardOutputPipeForTask:(NSTask*) aTask;
-    -(void) appendStdoutString:(NSString*) string;
-    -(void) appendStderrString:(NSString*) string;
-    -(void) resetEditableRange;
+-(void) installStandardOutputPipeForTask:(NSTask*) aTask;
+-(void) appendStdoutString:(NSString*) string;
+-(void) appendStderrString:(NSString*) string;
+-(void) replaceEditableRangeWithString:(NSString*) string;
+-(void) resetEditableRange;
+-(BOOL) isSelectionInEditableRange;
 @end
 
 @implementation BLLTerminalViewController
 @synthesize textView=_textView;
 @synthesize task=_task;
+@synthesize selectedCommandHistory=_selectedCommandHistory;
 @synthesize commandHistory=_commandHistory;
 // Private
 @synthesize readDispachQueue=_readDispachQueue;
 @synthesize editableRange=_editableRange;
 @synthesize editedText=_editedText;
+@synthesize shadowCommandHistory=_shadowCommandHistory;
 
 #pragma mark -
 #pragma mark Lifecycle 
@@ -39,6 +44,7 @@
     if (self) {
         _stdoutDispatchSource = NULL;
         _stderrDispatchSource = NULL;
+        _selectedCommandHistory = NSNotFound;
     }
     return self;
 }
@@ -74,10 +80,17 @@
 -(NSMutableArray*) commandHistory
 {
     if(_commandHistory == nil) {
-        _commandHistory = [NSMutableArray array];
-        [_commandHistory addObject:[NSString string]];
+        _commandHistory = [[NSMutableArray alloc] init];
     }
     return _commandHistory; 
+}
+
+-(NSMutableDictionary*) shadowCommandHistory
+{
+    if(_shadowCommandHistory == nil) {
+        _shadowCommandHistory = [[NSMutableDictionary alloc] init];
+    }
+    return _shadowCommandHistory; 
 }
 
 -(dispatch_queue_t) readDispachQueue
@@ -173,32 +186,116 @@
     }
 }
 
+#pragma mark -
+#pragma mark Command History
+-(void) selectPrevCommand
+{
+    @try {
+        self.selectedCommandHistory = MIN(self.selectedCommandHistory + 1,[[self commandHistory] count] - 1);   
+        [self replaceEditableRangeWithString:[[self commandHistory] objectAtIndex:self.selectedCommandHistory]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception: %@",exception);
+    }
+}
+
+-(void) selectNextCommand
+{
+    @try {
+        self.selectedCommandHistory = MAX(self.selectedCommandHistory - 1,0);
+        [self replaceEditableRangeWithString:[[self commandHistory] objectAtIndex:self.selectedCommandHistory]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception: %@",exception);
+    }
+}
+
+-(void) pushCommand
+{
+    [self willChangeValueForKey:@"commandHistory"];
+#define USE_IMUTABLE_COMMAND_HISTORY 1
+#if USE_IMUTABLE_COMMAND_HISTORY
+    [[self shadowCommandHistory] enumerateKeysAndObjectsUsingBlock:^(id key,id obj,BOOL* stop){
+        if(obj) {
+            [[self commandHistory] replaceObjectAtIndex:[key integerValue] withObject:obj];
+        }
+    }];
+#else
+    NSString* lastValue = [[self shadowCommandHistory] objectForKey:[NSNumber numberWithInteger:self.selectedCommandHistory]];
+    if(lastValue) {
+        [[self commandHistory] replaceObjectAtIndex:self.selectedCommandHistory withObject:lastValue];
+    }
+#endif //USE_IMUTABLE_COMMAND_HISTORY  
+    [[self shadowCommandHistory] removeAllObjects];
+    [[self commandHistory] insertObject:[[NSString string] autorelease] atIndex:0];
+    self.selectedCommandHistory = 0;
+    [self didChangeValueForKey:@"commandHistory"];
+}
+
+-(void) updateCommandWithString:(NSString*) command atIndex:(NSInteger) index
+{    
+    NSString* lastValue = [[self commandHistory] objectAtIndex:index];
+    
+    if([[self shadowCommandHistory] objectForKey:[NSNumber numberWithInteger:index]] == nil
+       && [lastValue length] > 0
+       && index != 0) {
+        [[self shadowCommandHistory] setObject:lastValue forKey:[NSNumber numberWithInteger:index]]; 
+    }
+    
+    [self willChangeValueForKey:@"commandHistory"];
+    [[self commandHistory] replaceObjectAtIndex:index withObject:command];
+    [self didChangeValueForKey:@"commandHistory"];
+}
+
+
+-(void) updateCommandWithString:(NSString*) command
+{
+    if([[self commandHistory] count] == 0) {
+        [self pushCommand];
+    }
+        
+    [self updateCommandWithString:command atIndex:self.selectedCommandHistory];
+}
+
+-(void) updateTopCommandWithString:(NSString*) command
+{
+    if([[self commandHistory] count] == 0) {
+        [self pushCommand];
+    }
+    
+    [self updateCommandWithString:command atIndex:0];
+}
+
 
 #pragma mark -
 #pragma mark NSTextViewDelegate
 
 -(BOOL) textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
 {
-    BOOL result = NO;
+    BOOL result = NO; 
+    
     if(commandSelector == @selector(insertNewline:))
     {
         NSAttributedString* attributedString = [[[NSAttributedString alloc] initWithString:@"\n"] autorelease];
         [[textView textStorage] insertAttributedString:attributedString atIndex:[[textView textStorage] length]];
 
-        NSString* commandString = [[[[textView textStorage] attributedSubstringFromRange:self.editableRange] string] 
-                                   stringByAppendingString:@"\n"];
+        NSString* commandString = [[[textView textStorage] attributedSubstringFromRange:self.editableRange] string];       
+        [self updateTopCommandWithString:commandString];
+        [self pushCommand];
         
-        [self willChangeValueForKey:@"commandHistory"];
-        [[self commandHistory] replaceObjectAtIndex:0 withObject:commandString];
-        [[self commandHistory] insertObject:[[[NSAttributedString alloc] initWithString:@""] autorelease] atIndex:0];
-        [self didChangeValueForKey:@"commandHistory"];
-        
-        NSData* data = [commandString dataUsingEncoding:NSASCIIStringEncoding];
+        NSData* data = [[commandString stringByAppendingString:@"\n"] dataUsingEncoding:NSASCIIStringEncoding];
         [[[_task standardInput] fileHandleForWriting] writeData:data];
         [self resetEditableRange]; 
         result = YES;
+    } else if(commandSelector == @selector(moveUp:) && [self isSelectionInEditableRange]) {
+        [self selectPrevCommand];
+        result = YES;
+    } else if(commandSelector == @selector(moveDown:) && [self isSelectionInEditableRange]) {
+        [self selectNextCommand];
+        result = YES;
+    } else {    
+        NSLog(@"Selector: %@", NSStringFromSelector(commandSelector));
     }
-    
     return result;
 }
 
@@ -240,12 +337,7 @@
                   [NSColor blackColor],NSForegroundColorAttributeName,
                   nil];
     [[[self textView] textStorage] setAttributes:attributes range:self.editableRange];
-    
-    [self willChangeValueForKey:@"commandHistory"];
-    [[self commandHistory] replaceObjectAtIndex:0 
-                                     withObject:[[[self textView] textStorage] attributedSubstringFromRange:self.editableRange]];
-    [self didChangeValueForKey:@"commandHistory"];
-    
+    [self updateCommandWithString:[[[[self textView] textStorage] attributedSubstringFromRange:self.editableRange] string]];    
 }
 
 - (void)textDidEndEditing:(NSNotification *)aNotification
@@ -255,6 +347,33 @@
 
 #pragma mark -
 #pragma mark Methods
+
+-(BOOL) isSelectionInEditableRange
+{
+    NSRange selectedRange = [[self textView] selectedRange];
+    if(IsIndexInRangeInclusive(selectedRange.location, self.editableRange) 
+       && IsIndexInRangeInclusive(selectedRange.location + selectedRange.length, self.editableRange)) {
+        return YES; 
+    }
+    return NO;
+}
+
+-(void) replaceEditableRangeWithString:(NSString*) string
+{ 
+    NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                  [NSColor blackColor],NSForegroundColorAttributeName,
+                  nil];
+    NSAttributedString* attributedString = [[[NSAttributedString alloc] initWithString:string attributes:attributes] autorelease];
+    if (self.editableRange.length > 0 || [attributedString length] > 0) {
+        @try {
+            [[[self textView] textStorage] replaceCharactersInRange:self.editableRange withAttributedString:attributedString];    
+            self.editableRange = NSMakeRange(self.editableRange.location, [attributedString length]);
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception: %@",exception);
+        }
+    }
+}
 
 -(void) resetEditableRange
 {
@@ -285,9 +404,8 @@
     attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSColor darkGrayColor],NSForegroundColorAttributeName,
                                 nil];
-    NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
+    NSAttributedString* attributedString = [[[NSAttributedString alloc] initWithString:string attributes:attributes] autorelease];
     [[[self textView] textStorage] appendAttributedString:attributedString];
-    [attributedString release];
     
     [self resetEditableRange];
     [[[self textView] textStorage] insertAttributedString:tmpEditedString atIndex:self.editableRange.location];
@@ -305,9 +423,8 @@
                                 [NSColor redColor],NSForegroundColorAttributeName,
                                 nil];
     
-    NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
+    NSAttributedString* attributedString = [[[NSAttributedString alloc] initWithString:string attributes:attributes] autorelease];
     [[[self textView] textStorage] appendAttributedString:attributedString];
-    [attributedString release];
     
     [self resetEditableRange];
     [[[self textView] textStorage] insertAttributedString:tmpEditedString atIndex:self.editableRange.location];
