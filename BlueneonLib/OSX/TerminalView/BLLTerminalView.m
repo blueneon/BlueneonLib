@@ -19,6 +19,7 @@
 @synthesize internalController=_internalController;
 @dynamic task;
 @dynamic commandHistory;
+@dynamic delegate;
 #pragma mark -
 #pragma mark Lifecycle 
 
@@ -58,7 +59,7 @@
 -(BLLTerminalViewController*) internalController
 {
     if(_internalController == nil) {
-        _internalController = [[BLLTerminalViewController alloc] init];
+        _internalController = [[BLLTerminalViewController alloc] initWithTerminalView:self];
         [_internalController addObserver:self forKeyPath:@"commandHistory" options:NSKeyValueObservingOptionPrior context:NULL];
         
     }
@@ -91,6 +92,16 @@
     return [[self internalController] commandHistory];
 }
 
+-(id<BLLTerminalViewDelegate>) delegate
+{
+    return [[self internalController] delegate];
+}
+
+-(void) setDelegate:(id<BLLTerminalViewDelegate>)delegate
+{
+    [[self internalController] setDelegate:delegate];
+}
+
 #pragma mark -
 #pragma mark Event handlers
 
@@ -106,5 +117,28 @@
     }
 }
 
+#pragma mark -
+#pragma mark Methods
+
+
+-(void) sendCommands:(NSArray*) commands
+{
+    [[self internalController] sendCommands:commands excludeFromHistory:YES];
+}
+
+-(void) sendCommands:(NSArray*) commands excludeFromHistory:(BOOL) exclude
+{
+    [[self internalController] sendCommands:commands excludeFromHistory:exclude];
+}
+
+-(void) sendCommand:(NSString*) command
+{
+    [self sendCommands:[NSArray arrayWithObject:command]];
+}
+
+-(void) sendCommand:(NSString*) command excludeFromHistory:(BOOL) exclude
+{
+    [self sendCommands:[NSArray arrayWithObject:command] excludeFromHistory:exclude];
+}
 
 @end

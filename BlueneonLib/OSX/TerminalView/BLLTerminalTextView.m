@@ -20,4 +20,21 @@
     return self;
 }
 
+-(void) keyDown:(NSEvent *)theEvent
+{
+    if ([[self delegate] respondsToSelector:@selector(textViewDidRecieve:keyDownEvent:)]) {
+        [(id<BLLTerminalTextViewDelegate>)[self delegate] textViewDidRecieve:self keyDownEvent:theEvent];
+    }
+    [super keyDown:theEvent];
+}
+
+-(void) keyUp:(NSEvent *)theEvent
+{
+    if ([[self delegate] respondsToSelector:@selector(textViewDidRecieve:keyUpEvent:)]) {
+        [(id<BLLTerminalTextViewDelegate>)[self delegate] textViewDidRecieve:self keyUpEvent:theEvent];
+    }
+    [super keyUp:theEvent];
+}
+
+
 @end

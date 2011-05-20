@@ -7,16 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BLLTerminalTextView.h"
 
 @class BLLTerminalView;
 @class BLLTerminalTextView;
+@class BLLTerminalViewController;
+@protocol BLLTerminalViewDelegate;
 
-@interface BLLTerminalViewController : NSObject <NSTextViewDelegate> {
+@interface BLLTerminalViewController : NSObject <BLLTerminalTextViewDelegate> {
 @private
+    BLLTerminalView* _terminalView;
     BLLTerminalTextView* _textView;
     NSTask* _task;
     NSInteger _selectedCommandHistory;
     NSMutableArray* _commandHistory;
+    id<BLLTerminalViewDelegate> _delegate;
     
 // Internal
     dispatch_source_t _stdoutDispatchSource;
@@ -31,4 +36,10 @@
 @property (retain, nonatomic) NSTask* task;
 @property (assign, nonatomic) NSInteger selectedCommandHistory;
 @property (retain, nonatomic) NSMutableArray* commandHistory;
+@property (assign, nonatomic) id<BLLTerminalViewDelegate> delegate;
+
+-(id) initWithTerminalView:(BLLTerminalView*) terminalView;
+
+-(BOOL) sendCommands:(NSArray*) commands excludeFromHistory:(BOOL) exclude;
+
 @end

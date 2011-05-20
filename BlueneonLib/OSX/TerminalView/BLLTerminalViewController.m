@@ -9,6 +9,7 @@
 #import "BLLTerminalViewController.h"
 #import "BLLTerminalTextView.h"
 #import "BLLRange.h"
+#import "BLLTerminalViewDelegate.h"
 #import "Debug.h"
 
 @interface BLLTerminalViewController ()
@@ -23,6 +24,24 @@
 -(void) replaceEditableRangeWithString:(NSString*) string;
 -(void) resetEditableRange;
 -(BOOL) isSelectionInEditableRange;
+// Convinience
+-(BOOL) shouldSendData:(NSData*) data;
+-(NSData*) willSendData:(NSData*) data;
+-(void) didSendData:(NSData*) data;
+-(void) didRecieveData:(NSData*) data;
+-(BOOL) shouldDisplayData:(NSData*) data;
+-(NSData*) willDisplayData:(NSData*) data;
+-(void) didDisplayData:(NSData*) data;
+-(BOOL) sendData:(NSData*)data;
+-(BOOL) recvData:(NSData*) data onPipe:(NSPipe*) pipe;
+// Command history
+-(void) selectPrevCommand;
+-(void) selectNextCommand;
+-(void) pushCommand;
+-(void) updateCommandWithString:(NSString*) command atIndex:(NSInteger) index;
+-(void) updateCommandWithString:(NSString*) command;
+-(void) updateTopCommandWithString:(NSString*) command;
+
 @end
 
 @implementation BLLTerminalViewController
@@ -30,6 +49,7 @@
 @synthesize task=_task;
 @synthesize selectedCommandHistory=_selectedCommandHistory;
 @synthesize commandHistory=_commandHistory;
+@synthesize delegate=_delegate;
 // Private
 @synthesize readDispachQueue=_readDispachQueue;
 @synthesize editableRange=_editableRange;
@@ -39,18 +59,21 @@
 #pragma mark -
 #pragma mark Lifecycle 
 
-- (id)init {
+-(id) initWithTerminalView:(BLLTerminalView*) terminalView {
     self = [super init];
     if (self) {
+        _terminalView = terminalView;
         _stdoutDispatchSource = NULL;
         _stderrDispatchSource = NULL;
         _selectedCommandHistory = NSNotFound;
+        _delegate = nil;
     }
     return self;
 }
 
 - (void)dealloc {
-    
+    _terminalView = nil;
+    self.delegate = nil;
     self.task = nil;
     self.commandHistory = nil;
    
@@ -96,7 +119,7 @@
 -(dispatch_queue_t) readDispachQueue
 {
     if (_readDispachQueue == NULL) {
-        _readDispachQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.blueneon.task.input[@d]",[self hash]] cStringUsingEncoding:NSUTF8StringEncoding], NULL);
+        _readDispachQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.blueneon.task.input[%d]",[self hash]] cStringUsingEncoding:NSUTF8StringEncoding], NULL);
     }
     return _readDispachQueue;
 }
@@ -126,9 +149,8 @@
         dispatch_source_set_event_handler(_stdoutDispatchSource, ^{
             NSData *inData = [[pipe fileHandleForReading] availableData];
             if([inData length]) {
-                NSString* str = [[[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding] autorelease];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self appendStdoutString:str];
+                    [self recvData:inData onPipe:pipe];
                 });
             }
         });
@@ -153,9 +175,8 @@
         dispatch_source_set_event_handler(_stderrDispatchSource, ^{
             NSData *inData = [[pipe fileHandleForReading] availableData];
             if([inData length]) {
-                NSString* str = [[[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding] autorelease];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self appendStderrString:str];
+                    [self recvData:inData onPipe:pipe];
                 });
             }
         });
@@ -184,6 +205,25 @@
             [self installStandardInputPipeForTask:_task];
         }
     }
+}
+#pragma mark -
+#pragma mark Public Methods
+
+-(BOOL) sendCommands:(NSArray*) commands excludeFromHistory:(BOOL) exclude
+{
+    __block BOOL result = YES;
+    dispatch_async(dispatch_get_main_queue(),^{
+        [commands enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL* stop){
+            if (!exclude) {
+                [self updateTopCommandWithString:(NSString*)obj];
+                [self pushCommand];
+            }            
+            NSString* command = [(NSString*)obj stringByAppendingString:@"\n"];
+            NSData* data = [command dataUsingEncoding:[NSString defaultCStringEncoding]];
+            result &= [self sendData:data];
+        }];
+    });
+    return result;
 }
 
 #pragma mark -
@@ -266,6 +306,18 @@
     [self updateCommandWithString:command atIndex:0];
 }
 
+#pragma mark -
+#pragma mark BLLTerminalTextViewDelegate
+
+-(void) textViewDidRecieve:(BLLTerminalTextView*) terminalTextView keyDownEvent:(NSEvent*) theEvent;
+{
+    if ([theEvent modifierFlags] & NSControlKeyMask) {
+        
+        if ([[theEvent charactersIgnoringModifiers] isEqualToString:@"c"]) {
+            [self sendData:[[NSString stringWithString:@"\\cc"] dataUsingEncoding:[NSString defaultCStringEncoding]]];
+        }        
+    }
+}
 
 #pragma mark -
 #pragma mark NSTextViewDelegate
@@ -280,13 +332,18 @@
         [[textView textStorage] insertAttributedString:attributedString atIndex:[[textView textStorage] length]];
 
         NSString* commandString = [[[textView textStorage] attributedSubstringFromRange:self.editableRange] string];       
-        [self updateTopCommandWithString:commandString];
-        [self pushCommand];
-        
-        NSData* data = [[commandString stringByAppendingString:@"\n"] dataUsingEncoding:NSASCIIStringEncoding];
-        [[[_task standardInput] fileHandleForWriting] writeData:data];
-        [self resetEditableRange]; 
-        result = YES;
+//        [self updateTopCommandWithString:commandString];
+//        [self pushCommand];
+//        
+//        NSData* data = [[commandString stringByAppendingString:@"\n"] dataUsingEncoding:NSASCIIStringEncoding];
+//        if([self sendData:data]) {
+//            [self resetEditableRange]; 
+//            result = YES;
+//        }
+        if([self sendCommands:[NSArray arrayWithObject:commandString] excludeFromHistory:NO]) {
+            [self resetEditableRange]; 
+            result = YES;
+        } 
     } else if(commandSelector == @selector(moveUp:) && [self isSelectionInEditableRange]) {
         [self selectPrevCommand];
         result = YES;
@@ -433,7 +490,97 @@
     [[self textView] scrollRangeToVisible:self.editableRange];
 }
 
+#pragma mark -
+#pragma Delegate Interface
 
+-(BOOL) shouldSendData:(NSData*) data
+{
+    BOOL result = YES;    
+    if([_delegate respondsToSelector:@selector(terminalView:shouldSendData:toTask:)]) {
+        result = [_delegate terminalView:_terminalView shouldSendData: data toTask:_task];
+    }    
+    return result;
+}
 
+-(NSData*) willSendData:(NSData*) data
+{    
+    if([_delegate respondsToSelector:@selector(terminalView:willSendData:toTask:)]) {
+        data = [_delegate terminalView:_terminalView willSendData:data toTask:_task];        
+    }    
+    return data;
+}
+
+-(void) didSendData:(NSData*) data
+{
+    if([_delegate respondsToSelector:@selector(terminalView:didSendData:toTask:)]) {
+        [_delegate terminalView:_terminalView didSendData:data toTask:_task];        
+    }        
+}
+
+-(void) didRecieveData:(NSData*) data 
+{
+    if([_delegate respondsToSelector:@selector(terminalView:didRecieveData:fromTask:)]) {
+        [_delegate terminalView:_terminalView didRecieveData:data fromTask:_task];        
+    } 
+}
+
+-(BOOL) shouldDisplayData:(NSData*) data
+{
+    BOOL result = YES;
+    if([_delegate respondsToSelector:@selector(terminalView:shouldDisplayData:fromTask:)]) {
+        result = [_delegate terminalView:_terminalView shouldDisplayData:data fromTask:_task];
+    }    
+    return result;    
+}
+
+-(NSData*) willDisplayData:(NSData*) data
+{
+    if([_delegate respondsToSelector:@selector(terminalView:willDisplayData:fromTask:)]) {
+        data = [_delegate terminalView:_terminalView willDisplayData:data fromTask:_task];
+    }        
+    return data;
+}
+
+-(void) didDisplayData:(NSData*) data
+{
+    if([_delegate respondsToSelector:@selector( terminalView:didDisplayData:fromxxxxTask:)]) {
+        [_delegate terminalView:_terminalView didDisplayData:data fromTask:_task];                
+    }     
+}
+
+-(BOOL) sendData:(NSData*) data
+{
+    BOOL send = [self shouldSendData:data];
+    if (send) {
+        data = [self willSendData:data];
+        if ([[[[NSString alloc] initWithData:data encoding:[NSString defaultCStringEncoding]] autorelease] isEqualToString:@"\\cc"]) {
+            pid_t pid = [self.task processIdentifier];
+            if (pid > 0) {
+                kill(pid, SIGINT);
+            }
+        } else {
+            [[[_task standardInput] fileHandleForWriting] writeData:data];
+        }
+        [self didSendData:data];
+    } 
+    return send;
+}
+
+-(BOOL) recvData:(NSData*) data onPipe:(NSPipe*) pipe
+{
+    [self didRecieveData:data];
+    BOOL result = [self shouldDisplayData:data];
+    if(result) {   
+        data = [self willDisplayData:data];
+        NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];  
+        if([_task standardOutput] == pipe) {
+            [self appendStdoutString:str];
+        } else {
+            [self appendStderrString:str];
+        }
+        [self didDisplayData:data];
+    }
+    return result;
+}
 
 @end
