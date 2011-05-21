@@ -44,7 +44,7 @@
 @implementation BLLArrayController
 @synthesize arrangedObjects=_arrangedObjects;
 @synthesize managedObjectContext=_managedObjectContext;
-@synthesize delegate;
+@synthesize delegate=_delegate;
 
 -(id) initWithArray:(NSArray*)anArray managedObjectContext:(NSManagedObjectContext*) aManagedObjectContext
 {

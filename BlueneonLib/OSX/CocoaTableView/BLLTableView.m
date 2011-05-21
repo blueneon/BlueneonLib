@@ -85,7 +85,7 @@
 @synthesize delegate=_delegate;
 @synthesize rowHeight=_rowHeight;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(NSRect)frame {
     if ((self = [super initWithFrame:frame]))
 	{	
 		self.recycledViews = [NSMutableSet set];
@@ -160,7 +160,7 @@
 		self.rowHeight = [self.delegate rowHeightInTableView:self];
 	}
 	
-	CGRect docFrame = [[self documentView] frame];
+	NSRect docFrame = [[self documentView] frame];
 	docFrame.size.height = self.rowHeight * [self numberOfRows];
 	[[self documentView] setFrame:docFrame];
 	
@@ -177,7 +177,7 @@
 	[self tileCells];
 }
 
--(void) setFrame:(CGRect) aFrame
+-(void) setFrame:(NSRect) aFrame
 {
 	[super setFrame:aFrame];
 	
@@ -226,9 +226,9 @@
 {
 	[super tile];
 	
-	CGRect docFrame = [[self documentView] frame];
+	NSRect docFrame = [[self documentView] frame];
 	docFrame.size.height = self.rowHeight * [self numberOfRows];
-	docFrame.size.width = CGRectGetWidth(self.bounds);
+	docFrame.size.width = self.bounds.size.width;
 	[[self documentView] setFrame:docFrame];
 	
 	[self tileCells];
@@ -237,9 +237,9 @@
 
 -(void) tileCells
 {
-	CGRect visibleBounds = [self documentVisibleRect];	
+	CGRect visibleBounds = NSRectToCGRect([self documentVisibleRect]);	
 	NSUInteger firstViewIndex = floorf(CGRectGetMinY(visibleBounds) / self.rowHeight);	
-	NSUInteger lastViewIndex = ceilf((CGRectGetMinY(visibleBounds) + CGRectGetHeight(self.bounds)) / self.rowHeight);
+	NSUInteger lastViewIndex = ceilf((CGRectGetMinY(visibleBounds) + self.bounds.size.height) / self.rowHeight);
 		
 	firstViewIndex = MAX(firstViewIndex,0);
 	lastViewIndex = MIN(lastViewIndex, [self numberOfRows] - 1);
@@ -297,9 +297,9 @@
 {
 	aView.tag = index;
 	
-	CGRect viewFrame = CGRectMake(0,
+	NSRect viewFrame = NSMakeRect(0,
 								   index * self.rowHeight,
-								   CGRectGetWidth(self.bounds),
+								   self.bounds.size.width,
 								   self.rowHeight);
 	aView.frame = viewFrame;
 	
@@ -308,8 +308,8 @@
 
 -(void) scrollWheel:(NSEvent *)theEvent
 {
-	CGRect contentRect = [[self contentView] bounds];
-	CGRect documentRect = [[self documentView] bounds];
+	CGRect contentRect = NSRectToCGRect([[self contentView] bounds]);
+	CGRect documentRect = NSRectToCGRect([[self documentView] bounds]);
 	
 	NSPoint curOffset = [[self contentView] bounds].origin;
 	NSPoint newOffset = NSMakePoint(curOffset.x, curOffset.y - (SCROLL_MULTIPLYER * [theEvent deltaY]));

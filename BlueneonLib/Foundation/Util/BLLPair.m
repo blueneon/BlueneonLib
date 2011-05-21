@@ -35,8 +35,8 @@
 
 
 @implementation BLLPair
-@synthesize firstValue;
-@synthesize secondValue;
+@synthesize firstValue=_firstValue;
+@synthesize secondValue=_secondValue;
 
 
 +(id) pairWithFirstValue:(id) first secondValue:(id) second
