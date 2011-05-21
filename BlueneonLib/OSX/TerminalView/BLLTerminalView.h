@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BLLTerminalViewDelegate.h"
+#import "BLLTerminalViewDataSource.h"
 
 @class BLLTerminalTextView;
 @class BLLTerminalViewController;
@@ -16,9 +17,9 @@
     NSScrollView* _internalScrollView;
     BLLTerminalViewController* _internalController;
 }
-@property (retain, nonatomic) NSTask* task;
 @property (assign, readonly) NSMutableArray* commandHistory;
 @property (assign, nonatomic) id<BLLTerminalViewDelegate> delegate;
+@property (assign, nonatomic) id<BLLTerminalViewDataSource> dataSource;
 
 -(void) sendCommands:(NSArray*) commands excludeFromHistory:(BOOL) exclude;
 -(void) sendCommand:(NSString*) command excludeFromHistory:(BOOL) exclude;

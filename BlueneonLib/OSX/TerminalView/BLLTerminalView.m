@@ -17,9 +17,9 @@
 @implementation BLLTerminalView
 @synthesize internalScrollView=_internalScrollView;
 @synthesize internalController=_internalController;
-@dynamic task;
 @dynamic commandHistory;
 @dynamic delegate;
+@dynamic dataSource;
 #pragma mark -
 #pragma mark Lifecycle 
 
@@ -82,9 +82,14 @@
     return _internalScrollView;
 }
 
--(void) setTask:(NSTask *)task
+-(void) setDataSource:(id<BLLTerminalViewDataSource>)dataSource
 {
-    [[self internalController] setTask:task];
+    [[self internalController] setDataSource:dataSource];
+}
+
+-(id<BLLTerminalViewDataSource>) dataSource
+{
+    return [[self internalController] dataSource];
 }
 
 -(NSMutableArray*) commandHistory

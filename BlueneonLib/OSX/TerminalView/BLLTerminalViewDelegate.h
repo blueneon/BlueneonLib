@@ -8,18 +8,19 @@
 
 #import <Foundation/Foundation.h>
 @class BLLTerminalView;
+@protocol BLLTerminalViewDataSource;
 
 @protocol BLLTerminalViewDelegate <NSObject>
 @optional
--(BOOL) terminalView:(BLLTerminalView*)terminalView shouldSendData:(NSData*) data toTask:(NSTask*) task;
--(NSData*) terminalView:(BLLTerminalView*)terminalView willSendData:(NSData*) data toTask:(NSTask*) task;
--(void) terminalView:(BLLTerminalView*)terminalView didSendData:(NSData*) data toTask:(NSTask*) task;
+-(BOOL) terminalView:(BLLTerminalView*)terminalView shouldSendData:(NSData*) data toDataSource:(id<BLLTerminalViewDataSource>) dataSource;
+-(NSData*) terminalView:(BLLTerminalView*)terminalView willSendData:(NSData*) data toDataSource:(id<BLLTerminalViewDataSource>) dataSource;
+-(void) terminalView:(BLLTerminalView*)terminalView didSendData:(NSData*) data toDataSource:(id<BLLTerminalViewDataSource>) dataSource;
 
 
--(void) terminalView:(BLLTerminalView*)terminalView didRecieveData:(NSData*) data fromTask:(NSTask*) task;
+-(void) terminalView:(BLLTerminalView*)terminalView didRecieveData:(NSData*) data fromDataSource:(id<BLLTerminalViewDataSource>) dataSource;
 
--(BOOL) terminalView:(BLLTerminalView*)terminalView shouldDisplayData:(NSData*) data fromTask:(NSTask*) task;
--(NSData*) terminalView:(BLLTerminalView*)terminalView willDisplayData:(NSData*) data fromTask:(NSTask*) task;
--(void) terminalView:(BLLTerminalView*)terminalView didDisplayData:(NSData*) data fromTask:(NSTask*) task;
+-(BOOL) terminalView:(BLLTerminalView*)terminalView shouldDisplayData:(NSData*) data fromDataSource:(id<BLLTerminalViewDataSource>) dataSource;
+-(NSData*) terminalView:(BLLTerminalView*)terminalView willDisplayData:(NSData*) data fromDataSource:(id<BLLTerminalViewDataSource>) dataSource;
+-(void) terminalView:(BLLTerminalView*)terminalView didDisplayData:(NSData*) data fromDataSource:(id<BLLTerminalViewDataSource>) dataSource;
 
 @end

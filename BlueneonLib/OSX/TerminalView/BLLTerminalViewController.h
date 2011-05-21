@@ -13,15 +13,16 @@
 @class BLLTerminalTextView;
 @class BLLTerminalViewController;
 @protocol BLLTerminalViewDelegate;
+@protocol BLLTerminalViewDataSource;
 
 @interface BLLTerminalViewController : NSObject <BLLTerminalTextViewDelegate> {
 @private
     BLLTerminalView* _terminalView;
     BLLTerminalTextView* _textView;
-    NSTask* _task;
     NSInteger _selectedCommandHistory;
     NSMutableArray* _commandHistory;
     id<BLLTerminalViewDelegate> _delegate;
+    id<BLLTerminalViewDataSource> _dataSource;
     
 // Internal
     dispatch_source_t _stdoutDispatchSource;
@@ -33,10 +34,10 @@
     NSString* _editedText;
 }
 @property (retain, readonly) BLLTerminalTextView* textView;
-@property (retain, nonatomic) NSTask* task;
 @property (assign, nonatomic) NSInteger selectedCommandHistory;
 @property (retain, nonatomic) NSMutableArray* commandHistory;
 @property (assign, nonatomic) id<BLLTerminalViewDelegate> delegate;
+@property (retain, nonatomic) id<BLLTerminalViewDataSource> dataSource;
 
 -(id) initWithTerminalView:(BLLTerminalView*) terminalView;
 
